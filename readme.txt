@@ -1,4 +1,1 @@
-first day
-second day
-three day
-55
+注意：这是一个练习
