@@ -28,6 +28,8 @@
 输入：height = [1,2,1]
 输出：2
 '''
+
+
 class Solution:
     def maxArea(self, height: list) -> int:
         # l = len(height)
@@ -38,20 +40,21 @@ class Solution:
         #         res.append(temp)
         # result = max(res)
         # return  result
-        left , right = 0, len(height)-1
+        left, right = 0, len(height) - 1
         area = 0
         while left < right:
             if height[left] < height[right]:
                 ans = height[left] * (right - left)
-                left +=1
+                left += 1
             else:
                 ans = height[right] * (right - left)
-                right -=1
+                right -= 1
             area = max(area, ans)
         return area
 
+
 if __name__ == '__main__':
-    height=[1, 8, 6, 2, 5, 4, 8, 3, 7]
+    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
     s = Solution()
     result = s.maxArea(height)
-    print('最大值:\t',result)
+    print('最大值:\t', result)
