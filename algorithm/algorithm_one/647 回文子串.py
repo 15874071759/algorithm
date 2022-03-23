@@ -21,19 +21,39 @@
 解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"
 """
 
+
 class Solution:
-    def countSubstring(self,s):
+    def countSubstrings(self, s):
         l = len(s)
         table = [[False for i in range(l)] for j in range(l)]
         for i in range(l):
-            for j in range(l):
-                if i == j:
-                    table[i][j] = True
-        print(table)
+            table[i][i] = True
+        # print(table)
+        # 子串长度
+        for length in range(2, l + 1):
+            # 起始下标
+            for i in range(l):
+                j = i + length - 1
+                if j >= l:
+                    break
+                if s[i] == s[j]:
+                    if j - i >= 3:
+                        table[i][j] = table[i + 1][j - 1]
+                    else:
+                        table[i][j] = True
+        #print(table)
+        # for i in range(l):
+        #     for j in range(l):
+        #         if table[i][j] == True and i != j:
+        #             print("i,j",i,j)
+        temp = [t for item in table for t in item]
+        return temp.count(True)
 
 
 if __name__ == "__main__":
-    ss = "aaa"
+    ss = "xkjkqlajprjwefilxgpdpebieswu"
+    #print(len(ss))
     s = Solution()
-    res = s.countSubstring(ss)
+    res = s.countSubstrings(ss)
     print(res)
+    #print(0.2+0.1)
