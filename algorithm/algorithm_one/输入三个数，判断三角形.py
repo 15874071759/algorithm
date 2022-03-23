@@ -17,3 +17,4 @@ if __name__ == "__main__":
     c = input("输入三角形第三条边：")
     triangle(a,b,c)
 
+    # a = input()
