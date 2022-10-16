@@ -53,7 +53,7 @@ class Solution:
 
 
 if __name__ == '__main__':
-    nums = [1, 3, 4, 2, 2]
+    nums = [1, 3, 4, 2, 3]
     s = Solution()
     result = s.findDuplicate(nums)
     print('重复数是：',result)
