@@ -39,18 +39,20 @@ nums2.length == n
  
 进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？
 '''
-#待尝试二分查找
+
+
+# 暴力解法
 class Solution:
-    #暴力解法
+
     def findMedianSortedArrays1(self, nums1: list, nums2: list) -> float:
         nums1.extend(nums2)
         nums1.sort()
+        mid = len(nums1)//2
         if len(nums1)%2 == 0:
-            mid1 = len(nums1)//2
-            return (nums1[mid1]+nums1[mid1-1])/2
-        else:
-            mid = len(nums1)//2
-            return nums1[mid]
+            return (nums1[mid]+nums1[mid-1])/2
+        return nums1[mid]
+
+# 二分查找
 
 
 if __name__ == '__main__':

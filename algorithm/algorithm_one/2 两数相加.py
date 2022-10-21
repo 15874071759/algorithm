@@ -34,14 +34,14 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        l3 = ListNode(0)
+        l3 = ListNode()
         head = l3
         step = 0
         while l1 or l2:
             x = l1.val if l1 else 0
             y = l2.val if l2 else 0
-            print(x)
-            print(y)
+            # print(x)
+            # print(y)
             reslut = x + y + step
             step = reslut // 10
             #print(reslut % 10)
@@ -59,13 +59,20 @@ if __name__ == "__main__":
     # l1 = [2,4,3]
     # l2 = [5,6,4]
     list1 = ListNode(2)
-    list1.next = list11 = ListNode(4)
-    list11.next = list12 = ListNode(3)
-    list2 = ListNode(5)
-    list2.next = list21 = ListNode(6)
-    list21.next = list22 = ListNode(4)
-    temp = Solution()
-    re = temp.addTwoNumbers(list1, list2)
+    list2 = ListNode(3)
+    list2.next = ListNode(4)
+    while list2 or list1:
+        print(list2.val if list2 else 0)
+        print(list1.val if list1 else 0)
+        list2 = list2.next if list2 else None
+        list1 = list1.next if list1 else None
+    # list1.next = list11 = ListNode(4)
+    # list11.next = list12 = ListNode(3)
+    # list2 = ListNode(5)
+    # list2.next = list21 = ListNode(6)
+    # list21.next = list22 = ListNode(4)
+    # temp = Solution()
+    # re = temp.addTwoNumbers(list1, list2)
     # while re:
     #     print(re.val)
     #     re = re.next

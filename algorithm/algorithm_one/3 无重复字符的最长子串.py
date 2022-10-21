@@ -26,6 +26,7 @@
 """
 
 
+# 解法一
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         temp = []
@@ -35,7 +36,7 @@ class Solution:
         max_len = 1
         for i in range(l):
             if temp.count(s[i]) >= 1:
-                index = temp.index(s[i]) #获取子串中重复字符的位置
+                index = temp.index(s[i])  # 获取子串中重复字符的位置
                 temp = temp[index + 1:]
             temp.append(s[i])
             if len(temp) > max_len:
@@ -43,8 +44,28 @@ class Solution:
         return max_len
 
 
+# 解法二 滑动窗口
+class Solution1:
+    def lengthOfLongestSubstring1(self, s: str) -> int:
+        left = 0
+        right = 0
+        res = 0
+        temp = set()
+        if len(s) < 1:
+            return 0
+        for i in range(len(s)):
+            right += 1
+            while s[i] in temp:
+                temp.remove(s[left])
+                left += 1
+            temp.add(s[i])
+            res = res if res > right - left else right - left
+
+        return res
+
+
 if __name__ == "__main__":
-    test = "dvdf"
-    s = Solution()
-    res = s.lengthOfLongestSubstring(test)
+    test = "abbcabdcbb"
+    s = Solution1()
+    res = s.lengthOfLongestSubstring1(test)
     print(res)
