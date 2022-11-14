@@ -39,12 +39,14 @@ nums2.length == n
  
 进阶：你可以设计实现一个时间复杂度为 O(m + n) 的算法解决此问题吗？
 """
+
+
 class Solution:
-    def merge(self,nums1,m,nums2,n):
+    def merge1(self, nums1, m, nums2, n):
         # 1.直接合并后排序
         # nums1[m:]=nums2
         # nums1.sort()
-        #2.双指针
+        # 2.双指针
         # nums3 = []
         # pointer1,pointer2 = 0,0
         # while pointer1 < m or pointer2 < n:
@@ -62,27 +64,48 @@ class Solution:
         #         pointer2 +=1
         # nums1[:] = nums3
 
-        p1 = m-1
-        p2 = n-1
-        tail = m+n-1
-        while p1 >=0 or p2 >=0:
+        p1 = m - 1
+        p2 = n - 1
+        tail = m + n - 1
+        while p1 >= 0 or p2 >= 0:
             if p1 == -1:
                 nums1[tail] = nums2[p2]
-                p2 -=1
+                p2 -= 1
             elif p2 == -1:
                 nums1[tail] = nums1[p1]
-                p1 -=1
+                p1 -= 1
             elif nums1[p1] > nums2[p2]:
                 nums1[tail] = nums1[p1]
-                p1 -=1
+                p1 -= 1
             else:
                 nums1[tail] = nums2[p2]
-                p2 -=1
-            tail -=1
+                p2 -= 1
+            tail -= 1
 
+    # 直接合并排序
+    def merge2(self, nums1, m: int, nums2, n: int) -> None:
+        nums1[m:] = nums2
+        nums1.sort()
 
-
-
+    # 逆向双指针
+    def merge(self, nums1, m: int, nums2, n: int) -> None:
+        re = m + n - 1
+        l1 = m - 1
+        l2 = n - 1
+        while l1 >= 0 or l2 >= 0:
+            if l1 == -1:
+                nums1[re] = nums2[l2]
+                l2 -= 1
+            elif l2 == -1:
+                nums1[re] = nums1[l1]
+                l1 -= 1
+            elif nums1[l1] > nums2[l2]:
+                nums1[re] = nums1[l1]
+                l1 -= 1
+            else:
+                nums1[re] = nums2[l2]
+                l2 -= 1
+            re -= 1
 
 if __name__ == '__main__':
     nums1 = [1, 2, 3, 0, 0, 0]
@@ -90,6 +113,5 @@ if __name__ == '__main__':
     nums2 = [2, 5, 6]
     n = 3
     s = Solution()
-    s.merge(nums1,m,nums2,n)
-    print('排序好的数组：',nums1)
-
+    s.merge(nums1, m, nums2, n)
+    print('排序好的数组：', nums1)

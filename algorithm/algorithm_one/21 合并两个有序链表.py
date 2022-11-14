@@ -21,27 +21,64 @@ class ListNode:
 
 
 class Solution:
+    # 迭代
     def mergeTwoLists(self, list1: ListNode, list2: ListNode) -> ListNode:
 
         # 合并后的链表
         res = ListNode(0)
-        l1 = ListNode(0,list1)
-        l2 = ListNode(0,list2)
-        while l1 or l2:
-            val1 = l1.val if l1 else 0
-            val2 = l2.val if l1 else 0
+        result = res
+        l1 = ListNode(0, list1).next
+        l2 = ListNode(0, list2).next
+        val1 = 0
+        val2 = 0
+        while l1 != None or l2 != None:
 
-            print("val1",val1)
-            print("val2",val2)
+            if l1 != None:
+                val1 = l1.val
+            if l2 != None:
+                val2 = l2.val
+            # print("val1:", val1)
+            # print("val2:", val2)
+
+            # print("res.val:",res.val)
 
             if val1 <= val2:
                 res.next = ListNode(val1)
-                l1 = l1.next if l1 else None
+                if l1 != None:
+                    l1 = l1.next
+                else:
+                    break
             else:
                 res.next = ListNode(val2)
-                l2 = l2.next if l2 else None
+                # if l1.next != None:
+                if l2 != None:
+                    l2 = l2.next
+                else:
+                    break
             res = res.next
-        return res.next
+
+        res.next = l1 if l1 is not None else l2
+        return result.next
+
+    #参考写法
+    def mergeTwoLists1(self, l1: ListNode, l2: ListNode) -> ListNode:
+        prehead = ListNode(-1)
+
+        prev = prehead
+        while l1 and l2:
+            if l1.val <= l2.val:
+                prev.next = l1
+                l1 = l1.next
+            else:
+                prev.next = l2
+                l2 = l2.next
+            prev = prev.next
+
+        # 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        prev.next = l1 if l1 is not None else l2
+
+        return prehead.next
+
 
 
 if __name__ == "__main__":
@@ -72,7 +109,7 @@ if __name__ == "__main__":
     #     print(list2.val)
     #     list2 = list2.next
 
-    re = s.mergeTwoLists(list1, list2)
+    re = s.mergeTwoLists1(list1, list2)
     while re:
         print(re.val)
         re = re.next
