@@ -42,7 +42,7 @@ class Solution:
 
 if __name__ == '__main__':
     nums = [-1, 0, 3, 5, 9, 12]
-    target = 9
+    target = 14
     s = Solution()
     result = s.search(nums,target)
     print('下标是：\t',result)
