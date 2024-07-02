@@ -19,7 +19,7 @@ class Solution:
     def compressString(self, S: str) -> str:
 
         if len(S) == 0:
-            target_str = ''
+            return S
         target_str = S[0]
         temp_count = 0
         for i in range(len(S)):
@@ -40,6 +40,8 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    test = 'aabcccccaaa'
+    # test = 'aabcccccaaa'
+    test = 'abbccd'
+
     re = s.compressString(test)
     print(re)
