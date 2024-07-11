@@ -20,16 +20,21 @@ class Solution:
     def isAnagram(self, s, t):
         count_s = {}
         count_t = {}
-        for item_s in s:
-            if item_s in count_s.keys():
-                count_s[item_s] +=1
-            else:
-                count_s[item_s] = 1
-        for item_t in t:
-            if item_t in count_t.keys():
-                count_t[item_t] +=1
-            else:
-                count_t[item_t] = 1
+        # for item_s in s:
+        #     if item_s in count_s.keys():
+        #         count_s[item_s] +=1
+        #     else:
+        #         count_s[item_s] = 1
+        count_s = {i:s.count(i) for i in s}
+
+        # for item_t in t:
+        #     if item_t in count_t.keys():
+        #         count_t[item_t] +=1
+        #     else:
+        #         count_t[item_t] = 1
+        count_t = {i:t.count(i) for i in t}
+        # print(count_s,count_t)
+
         if set(count_s.keys()) - set(count_t.keys()) or set(count_t.keys()) - set(count_s.keys()):
             return False
         for item in count_t.keys():
@@ -48,3 +53,5 @@ if __name__ == '__main__':
     # t = "car"
     re = solution.isAnagram(s,t)
     print(re)
+    # c = lambda a:a*3
+    # print(c(4))
